@@ -3,7 +3,8 @@ import { PostService } from '../../post.service';
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html'
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css'
 })
 export class UserComponent implements OnInit {
   posts: any[] = [];

@@ -1,5 +1,6 @@
 const app = require("./app");
 const http = require("http");
+const debug = require("debug")("node-angular")
 const connectDB = require('./config/db');
 
 const PORT = process.env.PORT || 3000;
