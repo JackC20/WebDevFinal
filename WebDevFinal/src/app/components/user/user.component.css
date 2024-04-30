@@ -1,0 +1,39 @@
+table {
+    width: 90%; 
+    margin: auto;
+    border-collapse: collapse;
+    font-size: 18px; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 14px; 
+    text-align: center;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  tfoot {
+    font-weight: bold;
+    background-color: #eee;
+  }
+  
+
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+
+  h2 {
+    font-size: 46px; 
+    margin-bottom: 20px; 
+  }
+  

@@ -6,11 +6,12 @@ import { UserComponent } from './components/user/user.component';
 const routes: Routes = [
   { path: 'macro', component: MacrosComponent },
   { path: 'user', component: UserComponent },
-  { path: '', redirectTo: '/macro', pathMatch: 'full' }
+  { path: '', redirectTo: '/macro', pathMatch: 'full' },
+  { path: '**', redirectTo: '/macro' } 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule]  
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
