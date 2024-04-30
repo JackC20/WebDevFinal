@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostService } from './post.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -25,9 +26,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     FormsModule,
     MatCardModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule 
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

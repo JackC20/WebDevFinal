@@ -1,9 +1,35 @@
-<mat-card class="content-card">
-    <mat-card-header>
-      <mat-card-title>User Details</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      User information or data display.
-    </mat-card-content>
-  </mat-card>
-  
+<div class="table-container">
+  <h2>User Diet Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Food Item</th>
+        <th>Calories</th>
+        <th>Fats (g)</th>
+        <th>Carbs (g)</th>
+        <th>Protein (g)</th>
+        <th>Sugars (g)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of foodItems">
+        <td>{{ item.name }}</td>
+        <td>{{ item.calories }}</td>
+        <td>{{ item.fats }}</td>
+        <td>{{ item.carbs }}</td>
+        <td>{{ item.protein }}</td>
+        <td>{{ item.sugars }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total:</th>
+        <th>{{ totalNutrition.calories }}</th>
+        <th>{{ totalNutrition.fats }}</th>
+        <th>{{ totalNutrition.carbs }}</th>
+        <th>{{ totalNutrition.protein }}</th>
+        <th>{{ totalNutrition.sugars }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
