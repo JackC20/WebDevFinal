@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostService } from './post.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     FormsModule,
     MatCardModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatFormFieldModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
