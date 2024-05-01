@@ -7,7 +7,7 @@ import { UserComponent } from './components/user/user.component';
 import { MacrosComponent } from './components/macros/macros.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PostService } from './post.service';
+import { FoodService } from './food.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     AppRoutingModule 
   ],
-  providers: [PostService],
+  providers: [FoodService],
   bootstrap: [AppComponent]
 })
 
