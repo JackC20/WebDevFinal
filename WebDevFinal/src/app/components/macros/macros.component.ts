@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PostService } from '../../post.service';
+import { FoodService } from '../../food.service';
 
 @Component({
   selector: 'app-macros',
@@ -28,21 +28,18 @@ export class MacrosComponent implements OnDestroy {
     { name: 'Beef Steak', calories: 271, fats: 17.2, carbs: 0, protein: 26.1, sugars: 0 },
     { name: 'Quinoa', calories: 222, fats: 3.6, carbs: 39.4, protein: 8.1, sugars: 1.6 },
     { name: 'Tomato', calories: 22, fats: 0.2, carbs: 4.8, protein: 1.1, sugars: 3.2 }
-];
+  ];
   private subscription: Subscription;
 
-  constructor(private postService: PostService) {
-    this.subscription = this.postService.getSelectedItems().subscribe();  // No need to resubscribe here
+  constructor(private foodService: FoodService) {
+    this.subscription = this.foodService.getSelectedItems().subscribe();  // Listening for selected items
   }
 
   selectItem(item: any) {
-    this.postService.setSelectedItems(item);
+    this.foodService.setSelectedItems(item).subscribe();  // Updated to subscribe to the result
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscription.unsubscribe();
   }
 }
-

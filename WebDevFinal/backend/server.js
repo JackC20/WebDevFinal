@@ -1,4 +1,4 @@
-const app = require("./backend/app");
+const app = require("./app");
 const debug = require("debug")("node-food-tracker");
 const http = require("http");
 const mongoose = require('mongoose');
@@ -46,12 +46,12 @@ const server = http.createServer(app);
 server.on('error', onError);
 server.on('listening', onListening);
 
-const MONGO_URI = 'your_mongodb_connection_string_here';
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    server.listen(port, () => console.log(`Server running on http://localhost:${port}`));
-  })
-  .catch(err => {
-    console.error('Database connection failed', err.message);
-    process.exit(1);
-  });
+// const MONGO_URI = 'your_mongodb_connection_string_here';
+// mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => {
+//     server.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+//   })
+//   .catch(err => {
+//     console.error('Database connection failed', err.message);
+//     process.exit(1);
+//   });

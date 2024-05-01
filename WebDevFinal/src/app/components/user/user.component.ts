@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PostService } from '../../post.service';
+import { FoodService } from '../../food.service';
 
 @Component({
   selector: 'app-user',
@@ -12,14 +12,15 @@ export class UserComponent implements OnInit, OnDestroy {
   totalNutrition: any = { calories: 0, fats: 0, carbs: 0, protein: 0, sugars: 0 };
   private subscription: Subscription = new Subscription();
 
-  constructor(private postService: PostService) { }
+  constructor(private foodService: FoodService) { }
 
   ngOnInit() {
-    this.subscription.add(this.postService.getSelectedItems().subscribe(items => {
+    this.subscription.add(this.foodService.getSelectedItems().subscribe(items => {
       this.foodItems = items;
       this.calculateTotals();
     }));
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
