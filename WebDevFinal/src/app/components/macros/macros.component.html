@@ -1,8 +1,37 @@
-<mat-card class="content-card">
-    <mat-card-header>
-      <mat-card-title>Macros Details</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      Macros data or operations.
-    </mat-card-content>
-  </mat-card>
+<div class="table-container">
+  <h2>Food Macro Details</h2>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Food Item</th>
+        <th>Calories</th>
+        <th>Fats (g)</th>
+        <th>Carbs (g)</th>
+        <th>Protein (g)</th>
+        <th>Sugars (g)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of foodItems">
+        <td><button (click)="selectItem(item)">Select</button></td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.calories }}</td>
+        <td>{{ item.fats }}</td>
+        <td>{{ item.carbs }}</td>
+        <td>{{ item.protein }}</td>
+        <td>{{ item.sugars }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <!-- <th>Total:</th>
+        <th>{{ totalNutrition.calories }}</th>
+        <th>{{ totalNutrition.fats }}</th>
+        <th>{{ totalNutrition.carbs }}</th>
+        <th>{{ totalNutrition.protein }}</th>
+        <th>{{ totalNutrition.sugars }}</th> -->
+      </tr>
+    </tfoot>
+  </table>
+</div>
