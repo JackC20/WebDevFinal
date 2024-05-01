@@ -1,35 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PostService } from '../../post.service';
 
 @Component({
   selector: 'app-macros',
   templateUrl: './macros.component.html',
-  styleUrls: ['./macros.component.css'] // Include if you have associated CSS
+  styleUrls: ['./macros.component.css']
 })
-export class MacrosComponent {
-  postTitle: string = '';
-  postContent: string = '';
-
-  constructor(private postService: PostService) { }
-
-  onAddPost() {
-    if (!this.postTitle || !this.postContent) {
-      // Handle error, such as empty fields
-      return;
-    }
-    this.postService.addPost({ title: this.postTitle, content: this.postContent }).subscribe(response => {
-      console.log('Post added!', response);
-      this.postTitle = '';
-      this.postContent = '';
-      // Optionally, emit an event or call a method to update the user component
-    });
-  }
-  //dummy data for food items able to be selected
-  // foodItems = [
-  //   { name: 'Apple', calories: 95, fats: 0.3, carbs: 25, protein: 0.5, sugars: 19 },
-  //   { name: 'Chicken Breast', calories: 165, fats: 3.6, carbs: 0, protein: 31, sugars: 0 },
-  //   { name: 'Brown Rice', calories: 216, fats: 1.8, carbs: 44.8, protein: 5, sugars: 0.7 }
-  // ];
+export class MacrosComponent implements OnDestroy {
   foodItems = [
     { name: 'Apple', calories: 95, fats: 0.3, carbs: 25, protein: 0.5, sugars: 19 },
     { name: 'Chicken Breast', calories: 165, fats: 3.6, carbs: 0, protein: 31, sugars: 0 },
@@ -51,7 +29,20 @@ export class MacrosComponent {
     { name: 'Quinoa', calories: 222, fats: 3.6, carbs: 39.4, protein: 8.1, sugars: 1.6 },
     { name: 'Tomato', calories: 22, fats: 0.2, carbs: 4.8, protein: 1.1, sugars: 3.2 }
 ];
+  private subscription: Subscription;
 
+  constructor(private postService: PostService) {
+    this.subscription = this.postService.getSelectedItems().subscribe();  // No need to resubscribe here
+  }
+
+  selectItem(item: any) {
+    this.postService.setSelectedItems(item);
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }
-
 
