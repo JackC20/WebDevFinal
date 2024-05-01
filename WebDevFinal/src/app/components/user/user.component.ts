@@ -1,30 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PostService } from '../../post.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
-
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
+  foodItems: any[] = [];
+  totalNutrition: any = { calories: 0, fats: 0, carbs: 0, protein: 0, sugars: 0 };
+  private subscription: Subscription = new Subscription();
 
-  totalNutrition: any = {
-    calories: 0,
-    fats: 0,
-    carbs: 0,
-    protein: 0,
-    sugars: 0
-  };
-  
-  foodItems = [
-    { name: 'Apple', calories: 95, fats: 0.3, carbs: 25, protein: 0.5, sugars: 19 },
-    { name: 'Chicken Breast', calories: 165, fats: 3.6, carbs: 0, protein: 31, sugars: 0 },
-    { name: 'Brown Rice', calories: 216, fats: 1.8, carbs: 44.8, protein: 5, sugars: 0.7 }
-  ];
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
-    this.calculateTotals();
+    this.subscription.add(this.postService.getSelectedItems().subscribe(items => {
+      this.foodItems = items;
+      this.calculateTotals();
+    }));
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   calculateTotals(): void {
@@ -36,5 +33,11 @@ export class UserComponent implements OnInit {
       totals.sugars += item.sugars;
       return totals;
     }, { calories: 0, fats: 0, carbs: 0, protein: 0, sugars: 0 });
+  
+    // Apply rounding after all sums are calculated
+    this.totalNutrition.fats = parseFloat(this.totalNutrition.fats.toFixed(1));
+    this.totalNutrition.carbs = parseFloat(this.totalNutrition.carbs.toFixed(1));
+    this.totalNutrition.protein = parseFloat(this.totalNutrition.protein.toFixed(1));
+    this.totalNutrition.sugars = parseFloat(this.totalNutrition.sugars.toFixed(1));
   }
 }

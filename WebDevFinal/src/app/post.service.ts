@@ -1,20 +1,31 @@
-// src/app/post.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class PostService {
+export class PostService{ 
   private baseUrl = 'http://localhost:3000/api';
+  private selectedItems = new BehaviorSubject<any[]>([]); // For tracking selected food items
 
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/posts`);
+  // Fetches food items from the server
+  getFoods(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/foods`);
   }
 
-  addPost(postData: { title: string; content: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/posts`, postData);
+  // Adds a new food item to the server
+  addFood(foodData: { name: string; calories: number; fats: number; carbs: number; protein: number; sugars: number }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/foods`, foodData);
+  }
+
+  // Setter for selected food items
+  setSelectedItems(item: any) {
+    this.selectedItems.next([...this.selectedItems.value, item]);
+  }
+
+  // Getter for selected food items as an observable
+  getSelectedItems(): Observable<any[]> {
+    return this.selectedItems.asObservable();
   }
 }
