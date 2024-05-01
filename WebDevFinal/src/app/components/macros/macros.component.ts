@@ -24,4 +24,12 @@ export class MacrosComponent {
       // Optionally, emit an event or call a method to update the user component
     });
   }
+  //dummy data for food items able to be selected
+  foodItems = [
+    { name: 'Apple', calories: 95, fats: 0.3, carbs: 25, protein: 0.5, sugars: 19 },
+    { name: 'Chicken Breast', calories: 165, fats: 3.6, carbs: 0, protein: 31, sugars: 0 },
+    { name: 'Brown Rice', calories: 216, fats: 1.8, carbs: 44.8, protein: 5, sugars: 0.7 }
+  ];
 }
+
+
