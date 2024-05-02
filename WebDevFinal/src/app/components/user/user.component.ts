@@ -27,15 +27,16 @@ export class UserComponent implements OnInit, OnDestroy {
 
   calculateTotals(): void {
     this.totalNutrition = this.foodItems.reduce((totals, item) => {
-      totals.calories += item.calories;
-      totals.fats += item.fats;
-      totals.carbs += item.carbs;
-      totals.protein += item.protein;
-      totals.sugars += item.sugars;
+      totals.calories += parseFloat(item.calories); // Convert string to float
+      totals.fats += parseFloat(item.fats); // Convert string to float
+      totals.carbs += parseFloat(item.carbs); // Convert string to float
+      totals.protein += parseFloat(item.protein); // Convert string to float
+      totals.sugars += parseFloat(item.sugars); // Convert string to float
       return totals;
     }, { calories: 0, fats: 0, carbs: 0, protein: 0, sugars: 0 });
   
-    // Apply rounding after all sums are calculated
+    // Optionally apply rounding after all sums are calculated
+    this.totalNutrition.calories = Math.round(this.totalNutrition.calories); // Round if you want to store as integer
     this.totalNutrition.fats = parseFloat(this.totalNutrition.fats.toFixed(1));
     this.totalNutrition.carbs = parseFloat(this.totalNutrition.carbs.toFixed(1));
     this.totalNutrition.protein = parseFloat(this.totalNutrition.protein.toFixed(1));
