@@ -1,5 +1,10 @@
 export interface Post{
   id: string;
-  title:string;
-  content:string;
+  foodItem:string;
+  calories:string;
+  proteins:string;
+  carbs:string;
+  fats:string;
+  sugars:string;
+
 }

@@ -42,9 +42,13 @@ export class PostService{
   getPostsUpdateListener(): Observable<Post[]> {
     return this.postUpDate.asObservable();
   }
-  addPost(title: string, content: string){
-    const post: Post ={ id:null, title: title, content: content};
-    this.posts.push(post);
-    this.postUpDate.next([...this.posts]);
+  addPost(foodItem: string, calories:string, proteins: string, carbs: string, fats: string, sugars:string){
+    const post: Post ={ id:null, foodItem: foodItem, calories: calories,proteins: proteins, carbs: carbs, fats: fats, sugars: sugars};
+    this.http.post<{message:string}>("http://localhost:3000/api/posts",post).subscribe((responseData)=>{
+      console.log(responseData.message)
+      this.posts.push(post);
+      this.postUpDate.next([...this.posts]);
+    })
+
   }
 }

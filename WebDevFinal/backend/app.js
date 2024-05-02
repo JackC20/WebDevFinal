@@ -1,8 +1,10 @@
 const express = require('express');
 //const cors = require('cors');
-
 const app = express();
+const bodyParser = require('body-parser')
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:false}))
 // Use CORS middleware to allow cross-origin requests
 //app.use(cors());
 
@@ -11,7 +13,7 @@ const app = express();
 
 // Define an array to hold posts (in a real application, you'd use a database)
 //const posts = [];
-
+//Disable CORS
 app.use((req, res, next)=>{
   res.setHeader("Access-Control-Allow-Origin","*");
   res.setHeader(
@@ -26,24 +28,51 @@ next();
 })
 
 //change to api post
-app.use('/api/posts',(req,res,next)=>{
-  const posts = [
+app.get('/api/posts',(req,res,next)=>{
+  const posts =
+  [
     {
       id:"23",
-      title:"1.server Post",
-      content:"blah blah"
+      foodItem:"1.server Post",
+      calories: "calorie",
+      proteins:"pro",
+      carbs:"carb",
+      sugars:"sugar",
+      fats:"fat",
     },
     {
-      id:"43",
-      title:"2.server Post",
-      content:"posh posh"
-    }
+      id:"24",
+      foodItem:"2.server Post",
+      calories: "calorie",
+      proteins:"pro",
+      carbs:"carb",
+      sugars:"sugar",
+      fats:"fat",
+    },
+    {
+      id:"25",
+      foodItem:"3.server Post",
+      calories: "calorie",
+      proteins:"pro",
+      carbs:"carb",
+      sugars:"sugar",
+      fats:"fat",
+    },
   ]
-  res.status(200).json({
-    message: "this is fetched data",
+  console.log(post)
+  res.status(201).json({
+    message: "fetched data",
     posts: posts
-  })
+  });
   res.send("hello from me")
+})
+app.post('/api/posts',(req,res,next)=>{
+  const post = req.body;
+  console.log(post)
+  res.status(201).json({
+    message: "post added correctly",
+  });
+  res.send("hello from app.post")
 })
 
 // // Route for getting posts
