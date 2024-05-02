@@ -10,11 +10,11 @@
 
 
 <!-- Can add post or other info -->
-  <!-- <mat-card class="card">
+  <mat-card class="card">
     <mat-card-content>
       <form (submit)="onAddPost(postForm)" #postForm = "ngForm">
       <mat-form-field class="buttoncon">
-        <input matInput type="text" name="title"
+        <input matInput type="text" name="foodItem"
         ngModel required minlength="3" #title = "ngModel">
         <mat-error *ngIf="title.invalid">Invalid title operation</mat-error>
       </mat-form-field>
@@ -26,11 +26,11 @@
       </textarea>
       <mat-error *ngIf="content.invalid">Invalid content operation</mat-error>
       </mat-form-field>
-      <textarea rows="10" [value]="anypost" #mypost></textarea>-->
-      <!--<textarea rows="5" [(ngModel)]="binding"></textarea>-->
-      <!-- <div class="buttoncon">
+      <!-- <textarea rows="10" [value]="" #mypost></textarea> -->
+      <!-- <textarea rows="5" [(ngModel)]="binding"></textarea> -->
+       <div class="buttoncon">
         <button class="file-button">Submit</button>
       </div>
       </form>
     </mat-card-content>
-  </mat-card> -->
+  </mat-card>

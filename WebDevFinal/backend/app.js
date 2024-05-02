@@ -1,7 +1,18 @@
 const express = require('express');
-//const cors = require('cors');
 const app = express();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+//const cors = require('cors');
+
+const foodModel = require('./models/food')
+
+mongoose.connect("mongodb+srv://srgh3b:xsS8cgQPSiQn7UUe@cluster0.upkj2nq.mongodb.net/food-item?retryWrites=true&w=majority&appName=Cluster0")
+.then(()=>{
+  console.log("connected to database")
+})
+.catch(()=>{
+  console.log("connection error")
+})
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -26,55 +37,84 @@ app.use((req, res, next)=>{
 console.log("Middleware");
 next();
 })
+app.use((req, res, next)=>{
+
+  next();
+})
 
 //change to api post
-app.get('/api/posts',(req,res,next)=>{
-  const posts =
-  [
-    {
-      id:"23",
-      foodItem:"1.server Post",
-      calories: "calorie",
-      proteins:"pro",
-      carbs:"carb",
-      sugars:"sugar",
-      fats:"fat",
-    },
-    {
-      id:"24",
-      foodItem:"2.server Post",
-      calories: "calorie",
-      proteins:"pro",
-      carbs:"carb",
-      sugars:"sugar",
-      fats:"fat",
-    },
-    {
-      id:"25",
-      foodItem:"3.server Post",
-      calories: "calorie",
-      proteins:"pro",
-      carbs:"carb",
-      sugars:"sugar",
-      fats:"fat",
-    },
-  ]
-  console.log(post)
-  res.status(201).json({
-    message: "fetched data",
-    posts: posts
-  });
-  res.send("hello from me")
-})
+// app.get('/api/posts',(req,res,next)=>{
+//   const posts =
+//   [
+//     {
+//       id:"23",
+//       foodItem:"1.server Post",
+//       calories: "calorie",
+//       proteins:"pro",
+//       carbs:"carb",
+//       sugars:"sugar",
+//       fats:"fat",
+//     },
+//     {
+//       id:"24",
+//       foodItem:"2.server Post",
+//       calories: "calorie",
+//       proteins:"pro",
+//       carbs:"carb",
+//       sugars:"sugar",
+//       fats:"fat",
+//     },
+//     {
+//       id:"25",
+//       foodItem:"3.server Post",
+//       calories: "calorie",
+//       proteins:"pro",
+//       carbs:"carb",
+//       sugars:"sugar",
+//       fats:"fat",
+//     },
+//   ]
+//   console.log(post)
+//   res.status(201).json({
+//     message: "fetched data",
+//     posts: posts
+//   });
+//   res.send("hello from me")
+// })
+// app.post('/api/posts',(req,res,next)=>{
+//   const post = req.body;
+//   console.log(post)
+//   res.status(201).json({
+//     message: "post added correctly",
+//   });
+//   res.send("hello from app.post")
+// })
+//password in notes
 app.post('/api/posts',(req,res,next)=>{
-  const post = req.body;
+  const post = new foodModel({
+    id: req.body.id,
+    foodItem: req.body.foodItem,
+    proteins: req.body.proteins,
+    carbs: req.body.carbs,
+    sugars: req.body.sugars,
+    fats: req.body.fats,
+    calories: req.body.calories
+  })
+  post.save()
   console.log(post)
   res.status(201).json({
-    message: "post added correctly",
+    message: "post added successfully",
   });
-  res.send("hello from app.post")
+  res.send("hello from app database")
 })
-
+app.get('/api/posts',(req,res,next)=>{
+  foodModel.find().then(documents =>{
+    res.status(200).json({
+      message: "post added successfully",
+      posts: documents
+    });
+  });
+});
 // // Route for getting posts
 // app.get('/api/posts', (req, res) => {
 //   res.json({ message: "Posts fetched successfully!", posts: posts });
