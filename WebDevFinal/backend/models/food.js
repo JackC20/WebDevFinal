@@ -1,29 +1,34 @@
 const mongoose = require('mongoose');
 
 const FoodSchema = new mongoose.Schema({
-  name: {
+  id: {
+    type: Number,
+    required: true,
+    unique: true
+  },
+  foodItem: {
     type: String,
     required: true,
     unique: true
   },
-  protein: {
-    type: Number,
+  proteins: {
+    type: String,
     required: true
   },
   carbs: {
-    type: Number,
+    type: String,
     required: true
   },
   sugars: {
-    type: Number,
+    type: String,
     required: true
   },
   fats: {
-    type: Number,
+    type: String,
     required: true
   },
   calories: {
-    type: Number,
+    type: String,
     required: true
   }
 });
