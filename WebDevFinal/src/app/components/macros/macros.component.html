@@ -10,7 +10,7 @@
 
 
 <!-- Can add post or other info -->
-  <mat-card class="card">
+  <!-- <mat-card class="card">
     <mat-card-content>
       <form (submit)="onAddPost(postForm)" #postForm = "ngForm">
       <mat-form-field class="buttoncon">
@@ -26,11 +26,45 @@
       </textarea>
       <mat-error *ngIf="content.invalid">Invalid content operation</mat-error>
       </mat-form-field>
-      <!-- <textarea rows="10" [value]="" #mypost></textarea> -->
-      <!-- <textarea rows="5" [(ngModel)]="binding"></textarea> -->
+      <textarea rows="10" [value]="" #mypost></textarea>
+      <textarea rows="5" [(ngModel)]="binding"></textarea>
        <div class="buttoncon">
         <button class="file-button">Submit</button>
       </div>
       </form>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+  <!-- <mat-card class="card">
+    <mat-card-content>
+      <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+        <mat-form-field class="buttoncon">
+          <input matInput type="text" name="foodItem" placeholder="Food Item" ngModel required minlength="3" #foodItem="ngModel">
+          <mat-error *ngIf="foodItem.invalid">Food item is required and must be at least 3 characters long.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="buttoncon">
+          <input matInput type="number" name="calories" placeholder="Calories" ngModel required #calories="ngModel">
+          <mat-error *ngIf="calories.invalid">Calories are required.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="buttoncon">
+          <input matInput type="number" name="fats" placeholder="Fats" ngModel required #fats="ngModel">
+          <mat-error *ngIf="fats.invalid">Fats are required.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="buttoncon">
+          <input matInput type="number" name="carbs" placeholder="Carbs" ngModel required #carbs="ngModel">
+          <mat-error *ngIf="carbs.invalid">Carbs are required.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="buttoncon">
+          <input matInput type="number" name="protein" placeholder="Protein" ngModel required #protein="ngModel">
+          <mat-error *ngIf="protein.invalid">Protein is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="buttoncon">
+          <input matInput type="number" name="sugars" placeholder="Sugars" ngModel required #sugars="ngModel">
+          <mat-error *ngIf="sugars.invalid">Sugars are required.</mat-error>
+        </mat-form-field>
+        <div class="buttoncon">
+          <button type="submit" mat-button color="primary" [disabled]="postForm.invalid">Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card> -->
+

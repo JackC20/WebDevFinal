@@ -20,7 +20,7 @@ export class MacrosComponent {
     if(form.invalid){
       return;
     }
-     this.postsService.addPost(form.value.foodItem, form.value.calories ,form.value.proteins, form.value.carbs, form.value.sugars, form.value.fats);
+     this.postsService.addPost(form.value.foodItem, form.value.calories ,form.value.protein, form.value.carbs, form.value.sugars, form.value.fats);
      //foodItem: foodItem, proteins: proteins, carbs: carbs, fats: fats, sugars: sugars
      form.resetForm();
   }
