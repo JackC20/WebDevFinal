@@ -17,15 +17,7 @@ mongoose.connect("mongodb+srv://JackC:Pr8UJ6yC28os3uDZ@cluster0.upkj2nq.mongodb.
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(cors());
-// Use CORS middleware to allow cross-origin requests
-//app.use(cors());
 
-// Middleware for parsing JSON bodies
-//app.use(express.json());
-
-// Define an array to hold posts (in a real application, you'd use a database)
-//const posts = [];
-//Disable CORS
 app.use((req, res, next)=>{
   res.setHeader("Access-Control-Allow-Origin","*");
   res.setHeader(
@@ -51,59 +43,12 @@ app.get('/api/selectedFoods', (req, res) => {
 
 // Endpoint to add selected food items
 app.post('/api/selectedFoods', (req, res) => {
-  const selection = req.body; // This is a single Food object
-  selectedFoods.push(selection);  // Directly push the object into the array
+  const selection = req.body; 
+  selectedFoods.push(selection);  
   res.status(201).json({ message: "Selected item added successfully", selectedFoods });
 });
 
 
-//change to api post
-// app.get('/api/posts',(req,res,next)=>{
-//   const posts =
-//   [
-//     {
-//       id:"23",
-//       foodItem:"1.server Post",
-//       calories: "calorie",
-//       proteins:"pro",
-//       carbs:"carb",
-//       sugars:"sugar",
-//       fats:"fat",
-//     },
-//     {
-//       id:"24",
-//       foodItem:"2.server Post",
-//       calories: "calorie",
-//       proteins:"pro",
-//       carbs:"carb",
-//       sugars:"sugar",
-//       fats:"fat",
-//     },
-//     {
-//       id:"25",
-//       foodItem:"3.server Post",
-//       calories: "calorie",
-//       proteins:"pro",
-//       carbs:"carb",
-//       sugars:"sugar",
-//       fats:"fat",
-//     },
-//   ]
-//   console.log(post)
-//   res.status(201).json({
-//     message: "fetched data",
-//     posts: posts
-//   });
-//   res.send("hello from me")
-// })
-// app.post('/api/posts',(req,res,next)=>{
-//   const post = req.body;
-//   console.log(post)
-//   res.status(201).json({
-//     message: "post added correctly",
-//   });
-//   res.send("hello from app.post")
-// })
 //password in notes
 app.post('/api/food',(req,res,next)=>{
   const post = new foodModel({
@@ -130,16 +75,6 @@ app.get('/api/food',(req,res,next)=>{
     });
   });
 });
-// // Route for getting posts
-// app.get('/api/posts', (req, res) => {
-//   res.json({ message: "Posts fetched successfully!", posts: posts });
-// });
 
-// // Route for adding a post
-// app.post('/api/posts', (req, res) => {
-//   const post = req.body;
-//   posts.push({ ...post, id: Math.random().toString() }); // Simple ID generation for example purposes
-//   res.status(201).json({ message: "Post added successfully", post: post });
-// });
 
 module.exports = app;

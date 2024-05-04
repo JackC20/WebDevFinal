@@ -7,12 +7,10 @@ const normalizePort = val => {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
     return val;
   }
 
   if (port >= 0) {
-    // port number
     return port;
   }
 
@@ -52,12 +50,3 @@ server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port);
 
-// connectDB().then(() => {
-//   const server = http.createServer(app);
-//   server.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-//   });
-// }).catch((error) => {
-//   console.error("Failed to connect to MongoDB", error);
-//   process.exit(1);
-// });

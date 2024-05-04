@@ -17,7 +17,7 @@ export class MacrosComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.foodService.getFoods().subscribe({
       next: (data) => {
-        this.foods = data.posts;  // Assuming the response directly contains the array of food items
+        this.foods = data.posts;  
         console.log('Foods loaded:', this.foods);
       },
       error: (error) => console.error('Error loading foods:', error)

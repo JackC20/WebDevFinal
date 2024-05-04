@@ -1,11 +1,11 @@
 main {
     display: flex;
-    justify-content: space-around; /* Adjusts spacing between the cards */
-    align-items: start; /* Aligns cards at the top */
-    padding: 20px; /* Adds some padding around */
+    justify-content: space-around; 
+    align-items: start; 
+    padding: 20px; 
   }
   
   .content-card {
-    flex: 1; /* Each card takes equal width */
-    margin: 10px; /* Adds some margin between cards */
+    flex: 1; 
+    margin: 10px; 
   }
